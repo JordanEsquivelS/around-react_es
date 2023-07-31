@@ -11,7 +11,6 @@ function App() {
   // Controladores de eventos para abrir las ventanas emergentes
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
-    console.log("Clicked on profile-info__edit");
   };
 
   const handleAddPlaceClick = () => {
@@ -21,6 +20,14 @@ function App() {
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   };
+
+  // Función para cerrar todas las ventanas emergentes
+  const closeAllPopups = () => {
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+  };
+
   return (
     <div className="page">
       <Header />
@@ -31,6 +38,7 @@ function App() {
         onAddPlaceClick={handleAddPlaceClick}
         isEditAvatarPopupOpen={isEditAvatarPopupOpen}
         onEditAvatarClick={handleEditAvatarClick}
+        onClosePopups={closeAllPopups} // Pasamos el handler closeAllPopups a Main
       />
 
       <Footer />

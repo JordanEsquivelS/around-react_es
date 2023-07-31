@@ -53,6 +53,7 @@ function Main(props) {
         title="Cambiar foto de perfil"
         name="imgProfile"
         isOpen={props.isEditAvatarPopupOpen}
+        onClose={props.onClosePopups}
       >
         <input
           className="popup__input form__input"
@@ -68,6 +69,7 @@ function Main(props) {
         title="Editar Perfil"
         name="editProfile"
         isOpen={props.isEditProfilePopupOpen}
+        onClose={props.onClosePopups} // Pasamos la prop onClosePopups a PopupWithForm
       >
         <input
           className="popup__input form__name"
@@ -96,6 +98,7 @@ function Main(props) {
         title="Nuevo Lugar"
         name="newPlace"
         isOpen={props.isAddPlacePopupOpen}
+        onClose={props.onClosePopups}
       >
         <input
           className="popup__input form__name"
