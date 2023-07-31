@@ -1,0 +1,9 @@
+.profile-info__edit {
+  grid-area: profile-info__edit;
+  max-width: 100%;
+  max-height: 24px;
+}
+.profile-info__edit:hover {
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out;
+}
