@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
+import api from "../utils/api";
 
 function Main(props) {
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  // Nuevos estados para los datos que se mostrarán en el popup de edición
+  const [editName, setEditName] = useState("");
+  const [editAboutMe, setEditAboutMe] = useState("");
+
+  useEffect(() => {
+    // Llamada a la API para obtener los datos del usuario
+    api.getUserInfo("users/me")
+      .then((userData) => {
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+        // Actualiza los estados para los datos del popup de edición
+        setEditName(userData.name);
+        setEditAboutMe(userData.about);
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+      });
+  }, []);
+
   return (
     <main className="content">
       <div className="profile">
@@ -9,8 +33,8 @@ function Main(props) {
           <img
             className="profile__image"
             id="profileImage"
-            src=""
-            alt="Jordan Esquivel, estudiante de programacion web de Practicum"
+            src={userAvatar}
+            alt="Avatar del estudiante de programacion web de Practicum"
           />
           <a
             onClick={props.onEditAvatarClick}
@@ -26,8 +50,8 @@ function Main(props) {
         </div>
 
         <div className="profile-info">
-          <h1 className="profile-info__nombre"></h1>
-          <h2 className="profile-info__about-me"></h2>
+        <h1 className="profile-info__nombre">{userName}</h1>
+          <h2 className="profile-info__about-me">{userDescription}</h2>
           <a onClick={props.onEditProfileClick} href="#">
             <img
               className="profile-info__edit"
@@ -79,6 +103,7 @@ function Main(props) {
           maxLength="40"
           placeholder="Nombre"
           required
+          value={editName}
         />
         <span className="popup__error" id="name-error"></span>
 
@@ -90,6 +115,7 @@ function Main(props) {
           maxLength="200"
           placeholder="Acerca de mi"
           required
+          value={editAboutMe}
         />
         <span className="popup__error" id="aboutMe-error"></span>
       </PopupWithForm>
