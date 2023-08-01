@@ -7,6 +7,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [isDeleteForm, setDeleteForm] = useState(false);
 
   // Controladores de eventos para abrir las ventanas emergentes
   const handleEditProfileClick = () => {
@@ -21,11 +22,16 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   };
 
+  const handleDeleteForm = () => {
+    setDeleteForm(true);
+  };
+
   // Función para cerrar todas las ventanas emergentes
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setDeleteForm(false);
   };
 
   return (
@@ -38,6 +44,8 @@ function App() {
         onAddPlaceClick={handleAddPlaceClick}
         isEditAvatarPopupOpen={isEditAvatarPopupOpen}
         onEditAvatarClick={handleEditAvatarClick}
+        isDeleteForm={isDeleteForm}
+        onDeleteForm={handleDeleteForm}
         onClosePopups={closeAllPopups} // Pasamos el handler closeAllPopups a Main
       />
 

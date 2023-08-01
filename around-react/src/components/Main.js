@@ -33,6 +33,11 @@ function Main(props) {
       });
   }, []);
 
+  // Función para manejar el clic en el botón de eliminación de tarjeta
+  const handleDeleteCardClick = () => {
+    props.onDeleteForm(); // Esto abrirá el PopupWithForm de confirmación
+  };
+
   return (
     <main className="content">
       <div className="profile">
@@ -151,11 +156,21 @@ function Main(props) {
 
       <div className="grid-container" id="grid-container">
         {cards.map((card) => (
-          <Card key={card._id} card={card} /> // Aquí se pasa la propiedad card al componente Card
+          <Card
+            key={card._id}
+            card={card} // Aquí se pasa la propiedad card al componente Card
+            onDeleteClick={handleDeleteCardClick} // Pasa la función handleDeleteCardClick a Card
+          />
         ))}
       </div>
 
-      <PopupWithForm title="¿Estás seguro?" name="deleteCard">
+      <PopupWithForm
+        title="¿Estás seguro?"
+        formType="¿Estás seguro?" // Agregamos el prop formType
+        name="deleteCard"
+        isOpen={props.isDeleteForm}
+        onClose={props.onClosePopups}
+      >
         <button
           className="popup__button form__save"
           type="submit"
