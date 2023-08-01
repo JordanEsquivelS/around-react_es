@@ -7,9 +7,6 @@ function Main(props) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
   const [userAvatar, setUserAvatar] = useState("");
-  // Nuevos estados para los datos que se mostrarán en el popup de edición
-  const [editName, setEditName] = useState("");
-  const [editAboutMe, setEditAboutMe] = useState("");
 
   const [cards, setCards] = useState([]);
 
@@ -21,9 +18,6 @@ function Main(props) {
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
-        // Actualiza los estados para los datos del popup de edición
-        setEditName(userData.name);
-        setEditAboutMe(userData.about);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -49,32 +43,38 @@ function Main(props) {
             src={userAvatar}
             alt="Avatar del estudiante de programacion web de Practicum"
           />
-          <a onClick={props.onEditAvatarClick} className="profile__overlayImg">
+          <button
+            onClick={props.onEditAvatarClick}
+            className="profile__overlayImg"
+          >
             <img
               className="profile__editImg"
               src={require("../images/edit_img_profile.svg").default}
               alt="lapiz de edicion de foto perfil"
             />
-          </a>
+          </button>
         </div>
 
         <div className="profile-info">
           <h1 className="profile-info__nombre">{userName}</h1>
           <h2 className="profile-info__about-me">{userDescription}</h2>
-          <a onClick={props.onEditProfileClick} className="profile-info__edit">
+          <button
+            onClick={props.onEditProfileClick}
+            className="profile-info__edit"
+          >
             <img
               src={require("../images/Edit_Button.svg").default}
               alt="boton de editar"
             />
-          </a>
+          </button>
         </div>
-        <a onClick={props.onAddPlaceClick} className="profile__addPlace">
+        <button onClick={props.onAddPlaceClick} className="profile__addPlace">
           <img
             className="profile__add-image"
             src={require("../images/adicion.svg").default}
             alt="boton de agregado"
           />
-        </a>
+        </button>
       </div>
 
       <PopupWithForm
@@ -107,7 +107,6 @@ function Main(props) {
           maxLength="40"
           placeholder="Nombre"
           required
-          value={editName}
         />
         <span className="popup__error" id="name-error"></span>
 
@@ -119,7 +118,6 @@ function Main(props) {
           maxLength="200"
           placeholder="Acerca de mi"
           required
-          value={editAboutMe}
         />
         <span className="popup__error" id="aboutMe-error"></span>
       </PopupWithForm>
