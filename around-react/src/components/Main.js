@@ -49,11 +49,7 @@ function Main(props) {
             src={userAvatar}
             alt="Avatar del estudiante de programacion web de Practicum"
           />
-          <a
-            onClick={props.onEditAvatarClick}
-            className="profile__overlayImg"
-            href="#"
-          >
+          <a onClick={props.onEditAvatarClick} className="profile__overlayImg">
             <img
               className="profile__editImg"
               src={require("../images/edit_img_profile.svg").default}
@@ -65,19 +61,14 @@ function Main(props) {
         <div className="profile-info">
           <h1 className="profile-info__nombre">{userName}</h1>
           <h2 className="profile-info__about-me">{userDescription}</h2>
-          <a onClick={props.onEditProfileClick} href="#">
+          <a onClick={props.onEditProfileClick} className="profile-info__edit">
             <img
-              className="profile-info__edit"
               src={require("../images/Edit_Button.svg").default}
               alt="boton de editar"
             />
           </a>
         </div>
-        <a
-          onClick={props.onAddPlaceClick}
-          href="#"
-          className="profile__addPlace"
-        >
+        <a onClick={props.onAddPlaceClick} className="profile__addPlace">
           <img
             className="profile__add-image"
             src={require("../images/adicion.svg").default}

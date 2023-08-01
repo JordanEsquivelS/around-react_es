@@ -9,6 +9,7 @@
   transition: opacity 0.7s;
   border-radius: 48%;
   z-index: 2;
+  cursor: pointer;
 }
 
 .profile__overlayImg:hover {

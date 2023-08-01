@@ -7,6 +7,8 @@
   justify-content: center;
   margin: auto;
   margin-right: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 .profile__addPlace:hover {
   opacity: 0.4;
