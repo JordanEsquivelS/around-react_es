@@ -29,18 +29,26 @@ class Api {
   }
 
   getUserInfo(endPoint) {
-    return this.fetchData(`${this.options.address}/v1/${this.options.groupId}/${endPoint}`)
-      .then((result) => {
-        return result;
-      });
+    return this.fetchData(
+      `${this.options.address}/v1/${this.options.groupId}/${endPoint}`
+    ).then((result) => {
+      return result;
+    });
   }
 
+  getInitialCards(endPoint) {
+    return this.fetchData(
+      `${this.options.address}/v1/${this.options.groupId}/${endPoint}`
+    ).then((result) => {
+      return result;
+    });
+  }
 }
 
 const api = new Api({
-  address: 'https://nomoreparties.co',
-  groupId: 'web_es_07',
-  token: '6b6ff122-c6bd-4191-9431-3243f5375a43', // Cambia esto con tu token
+  address: "https://nomoreparties.co",
+  groupId: "web_es_07",
+  token: "6b6ff122-c6bd-4191-9431-3243f5375a43", // Cambia esto con tu token
 });
 
 export default api;

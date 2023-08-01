@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 import api from "../utils/api";
+import Card from "./Card";
 
 function Main(props) {
   const [userName, setUserName] = useState("");
@@ -10,9 +11,12 @@ function Main(props) {
   const [editName, setEditName] = useState("");
   const [editAboutMe, setEditAboutMe] = useState("");
 
+  const [cards, setCards] = useState([]);
+
   useEffect(() => {
     // Llamada a la API para obtener los datos del usuario
-    api.getUserInfo("users/me")
+    api
+      .getUserInfo("users/me")
       .then((userData) => {
         setUserName(userData.name);
         setUserDescription(userData.about);
@@ -23,6 +27,15 @@ function Main(props) {
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
+      });
+    // Llamada a la API para obtener los datos de las tarjetas
+    api
+      .getInitialCards("cards")
+      .then((cardsData) => {
+        setCards(cardsData);
+      })
+      .catch((error) => {
+        console.error("Error fetching cards data:", error);
       });
   }, []);
 
@@ -50,7 +63,7 @@ function Main(props) {
         </div>
 
         <div className="profile-info">
-        <h1 className="profile-info__nombre">{userName}</h1>
+          <h1 className="profile-info__nombre">{userName}</h1>
           <h2 className="profile-info__about-me">{userDescription}</h2>
           <a onClick={props.onEditProfileClick} href="#">
             <img
@@ -148,23 +161,9 @@ function Main(props) {
       </PopupWithForm>
 
       <div className="grid-container" id="grid-container">
-        <template id="card-template">
-          <div className="photo-grid">
-            <img className="photo-grid__image" src=" " alt=" " />
-            <img
-              alt="imagen de tacho de basura blanco"
-              className="photo-grid__delete"
-              src={require("../images/delete.svg").default}
-            />
-            <div className="photo-grid__description">
-              <p className="photo-grid__text"></p>
-              <div className="photo-grid__likesConteiner">
-                <div className="photo-grid__like"></div>
-                <p className="photo-grid__likeCounter"></p>
-              </div>
-            </div>
-          </div>
-        </template>
+        {cards.map((card) => (
+          <Card key={card._id} card={card} /> // Aquí se pasa la propiedad card al componente Card
+        ))}
       </div>
 
       <PopupWithForm title="¿Estás seguro?" name="deleteCard">
