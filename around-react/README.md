@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Proyecto 11 - React: Alrededor de los Estados Unidos
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto React presenta una colección de imágenes interesantes como paisajes, animales, comida y más. Los usuarios pueden explorar esta galería de imágenes y dar "Me gusta" a sus favoritas. Además, pueden ver detalles de las imágenes en un popup interactivo.
 
-## Available Scripts
+## Características del proyecto:
 
-In the project directory, you can run:
+- Utiliza React para crear una experiencia de usuario interactiva y fluida.
+- Muestra imágenes almacenadas en el servidor de manera dinámica mediante el uso de componentes React como Card y ImagePopup.
+- Permite a los usuarios dar "Me gusta" a sus imágenes favoritas. Aunque la funcionalidad de conteo de likes está presente, aún no se encuentra completamente implementada.
+- Permite a los usuarios ver detalles de las imágenes en un popup interactivo. Al hacer clic en una imagen, se muestra un popup con información adicional.
+- Utiliza formularios emergentes (PopupWithForm) para permitir a los usuarios editar sus perfiles y agregar nuevos lugares. Aunque estas funcionalidades están presentes, aún no están completamente implementadas.
+- Utiliza Webpack para empaquetar y optimizar los archivos del proyecto, incluyendo la transpilación del código JavaScript y la carga de recursos adicionales.
 
-### `npm start`
+## Pasos de instalación
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Sigue estos pasos para configurar y ejecutar el proyecto en tu máquina local:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Clonar el repositorio**: Comienza clonando el repositorio de GitHub en tu máquina local utilizando el siguiente comando:
 
-### `npm test`
+   git clone https://github.com/JordanEsquivelS/around-react_es.git
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Instalar dependencias**: Abre una terminal en la carpeta raíz del proyecto y ejecuta el siguiente comando para instalar todas las dependencias necesarias:
 
-### `npm run build`
+   npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Ejecutar en modo de desarrollo**: Una vez que todas las dependencias estén instaladas, puedes ejecutar el proyecto en modo de desarrollo con el siguiente comando:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Esto iniciará el servidor de desarrollo de Webpack, lo que te permitirá ver tu proyecto en el navegador mientras realizas cambios en el código.
 
-### `npm run eject`
+4. **Construir para producción**: Cuando hayas terminado de desarrollar y quieras preparar el proyecto para producción, ejecuta el siguiente comando para crear una versión optimizada:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   npm run build
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Esto generará una carpeta llamada `dist` que contiene los archivos optimizados listos para desplegar en un servidor.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+¡Con estos pasos, deberías tener el proyecto funcionando en tu máquina local
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Enlaces
 
-## Learn More
+- [Proyecto en GitHub Pages](https://jordanesquivels.github.io/web_project_4_esp/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Proyecto en GitHub](https://github.com/JordanEsquivelS/around-react_es/tree/main/around-react)

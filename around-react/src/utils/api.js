@@ -48,7 +48,7 @@ class Api {
 const api = new Api({
   address: "https://nomoreparties.co",
   groupId: "web_es_07",
-  token: "6b6ff122-c6bd-4191-9431-3243f5375a43", // Cambia esto con tu token
+  token: "6b6ff122-c6bd-4191-9431-3243f5375a43",
 });
 
 export default api;
