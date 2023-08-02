@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/around-react_es/static/css/main.fa11be50.css",
+    "main.css": "/around-react_es/static/css/main.f44910ea.css",
     "main.js": "/around-react_es/static/js/main.c698d1af.js",
     "static/js/787.1c78f32b.chunk.js": "/around-react_es/static/js/787.1c78f32b.chunk.js",
     "static/media/Inter-SemiBold.woff": "/around-react_es/static/media/Inter-SemiBold.cca62d21c8c555c392e5.woff",
@@ -18,12 +18,12 @@
     "static/media/Edit_Button.svg": "/around-react_es/static/media/Edit_Button.af236f6cf67005f1d7aa37d370e5df9d.svg",
     "static/media/edit_img_profile.svg": "/around-react_es/static/media/edit_img_profile.ae1a976ddb506239e9f06655014e44a3.svg",
     "static/media/adicion.svg": "/around-react_es/static/media/adicion.d5d6f8af0577b9c95ee43048c9756c7b.svg",
-    "main.fa11be50.css.map": "/around-react_es/static/css/main.fa11be50.css.map",
+    "main.f44910ea.css.map": "/around-react_es/static/css/main.f44910ea.css.map",
     "main.c698d1af.js.map": "/around-react_es/static/js/main.c698d1af.js.map",
     "787.1c78f32b.chunk.js.map": "/around-react_es/static/js/787.1c78f32b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fa11be50.css",
+    "static/css/main.f44910ea.css",
     "static/js/main.c698d1af.js"
   ]
 }
