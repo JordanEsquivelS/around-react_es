@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/around-react_es/static/css/main.fa11be50.css",
+    "main.js": "/around-react_es/static/js/main.c698d1af.js",
+    "static/js/787.1c78f32b.chunk.js": "/around-react_es/static/js/787.1c78f32b.chunk.js",
+    "static/media/Inter-SemiBold.woff": "/around-react_es/static/media/Inter-SemiBold.cca62d21c8c555c392e5.woff",
+    "static/media/Inter-Black.woff": "/around-react_es/static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff": "/around-react_es/static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/Inter-SemiBold.woff2": "/around-react_es/static/media/Inter-SemiBold.b5f0f109bc88052d4000.woff2",
+    "static/media/Inter-Black.woff2": "/around-react_es/static/media/Inter-Black.15ca31c0a2a68f76d2d1.woff2",
+    "static/media/Inter-Regular.woff2": "/around-react_es/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/logo.svg": "/around-react_es/static/media/logo.c75819857ff1599f0c50e9fc06373cd9.svg",
+    "static/media/corazon_blanco.svg": "/around-react_es/static/media/corazon_blanco.99043841e8bec6b9df21.svg",
+    "index.html": "/around-react_es/index.html",
+    "static/media/delete.svg": "/around-react_es/static/media/delete.ba43124316072f7a8629205eb192dd29.svg",
+    "static/media/corazon_negro.svg": "/around-react_es/static/media/corazon_negro.f8482d28867cec189b08.svg",
+    "static/media/CloseIcon_blanco.svg": "/around-react_es/static/media/CloseIcon_blanco.0ca722bc0e922fcea36ebcf0f148a544.svg",
+    "static/media/Edit_Button.svg": "/around-react_es/static/media/Edit_Button.af236f6cf67005f1d7aa37d370e5df9d.svg",
+    "static/media/edit_img_profile.svg": "/around-react_es/static/media/edit_img_profile.ae1a976ddb506239e9f06655014e44a3.svg",
+    "static/media/adicion.svg": "/around-react_es/static/media/adicion.d5d6f8af0577b9c95ee43048c9756c7b.svg",
+    "main.fa11be50.css.map": "/around-react_es/static/css/main.fa11be50.css.map",
+    "main.c698d1af.js.map": "/around-react_es/static/js/main.c698d1af.js.map",
+    "787.1c78f32b.chunk.js.map": "/around-react_es/static/js/787.1c78f32b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa11be50.css",
+    "static/js/main.c698d1af.js"
+  ]
+}
