@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 import api from "../utils/api";
 import Card from "./Card";
-
+import ImagePopup from "./ImagePopup";
 function Main(props) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
@@ -81,7 +81,6 @@ function Main(props) {
           />
         </button>
       </div>
-
       <PopupWithForm
         title="Cambiar foto de perfil"
         name="imgProfile"
@@ -97,7 +96,6 @@ function Main(props) {
         />
         <span className="popup__error" id="input-urlImg-error"></span>
       </PopupWithForm>
-
       <PopupWithForm
         title="Editar Perfil"
         name="editProfile"
@@ -126,7 +124,6 @@ function Main(props) {
         />
         <span className="popup__error" id="aboutMe-error"></span>
       </PopupWithForm>
-
       <PopupWithForm
         title="Nuevo Lugar"
         name="newPlace"
@@ -153,17 +150,16 @@ function Main(props) {
         />
         <span className="popup__error" id="input-url-error"></span>
       </PopupWithForm>
-
       <div className="grid-container" id="grid-container">
         {cards.map((card) => (
           <Card
             key={card._id}
             card={card} // Aquí se pasa la propiedad card al componente Card
             onDeleteClick={handleDeleteCardClick} // Pasa la función handleDeleteCardClick a Card
+            onCardClick={props.onCardClick} // Usar la prop onCardClick de App.js
           />
         ))}
       </div>
-
       <PopupWithForm
         title="¿Estás seguro?"
         formType="¿Estás seguro?" // Agregamos el prop formType
@@ -180,17 +176,12 @@ function Main(props) {
         </button>
       </PopupWithForm>
 
-      <div className="popImg">
-        <div className="popImg__container">
-          <img
-            alt="boton de cerrar"
-            className="popImg__close"
-            src={require("../images/CloseIcon_blanco.svg").default}
-          />
-          <img src=" " alt=" " className="popImg__bigImage" />
-          <p className="popImg__text"></p>
-        </div>
-      </div>
+      {props.selectedCard && (
+        <ImagePopup
+          card={props.selectedCard} // Usar la prop selectedCard de App.js
+          onClose={props.onClosePopups} // Pasamos el controlador closeAllPopups como prop onClose
+        />
+      )}
     </main>
   );
 }
