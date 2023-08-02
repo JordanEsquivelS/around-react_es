@@ -39,6 +39,6 @@ Esto generará una carpeta llamada `dist` que contiene los archivos optimizados 
 
 ## Enlaces
 
-- [Proyecto en GitHub Pages](https://jordanesquivels.github.io/web_project_4_esp/)
+- [Proyecto en GitHub Pages](https://jordanesquivels.github.io/around-react_es/)
 
 - [Proyecto en GitHub](https://github.com/JordanEsquivelS/around-react_es/tree/main/around-react)
