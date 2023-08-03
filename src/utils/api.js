@@ -28,20 +28,26 @@ class Api {
       });
   }
 
-  getUserInfo(endPoint) {
-    return this.fetchData(
-      `${this.options.address}/v1/${this.options.groupId}/${endPoint}`
-    ).then((result) => {
+  async getUserInfo(endPoint) {
+    try {
+      const result = await this.fetchData(
+        `${this.options.address}/v1/${this.options.groupId}/${endPoint}`
+      );
       return result;
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  getInitialCards(endPoint) {
-    return this.fetchData(
-      `${this.options.address}/v1/${this.options.groupId}/${endPoint}`
-    ).then((result) => {
+  async getInitialCards(endPoint) {
+    try {
+      const result = await this.fetchData(
+        `${this.options.address}/v1/${this.options.groupId}/${endPoint}`
+      );
       return result;
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 

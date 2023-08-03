@@ -11,27 +11,31 @@ function Main(props) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    api
-      .getUserInfo("users/me")
-      .then((userData) => {
+    async function fetchUserData() {
+      try {
+        const userData = await api.getUserInfo("users/me");
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching user data:", error);
-      });
+      }
+    }
+
+    fetchUserData();
   }, []);
 
   useEffect(() => {
-    api
-      .getInitialCards("cards")
-      .then((cardsData) => {
+    async function fetchInitialCards() {
+      try {
+        const cardsData = await api.getInitialCards("cards");
         setCards(cardsData);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error("Error fetching cards data:", error);
-      });
+      }
+    }
+
+    fetchInitialCards();
   }, []);
 
   const handleDeleteCardClick = () => {
@@ -40,47 +44,49 @@ function Main(props) {
 
   return (
     <main className="content">
-      <div className="profile">
-        <div className="profile__conteinerImg">
-          <img
-            className="profile__image"
-            id="profileImage"
-            src={userAvatar}
-            alt="Avatar del estudiante de programacion web de Practicum"
-          />
-          <button
-            onClick={props.onEditAvatarClick}
-            className="profile__overlayImg"
-          >
+      <>
+        <div className="profile">
+          <div className="profile__conteinerImg">
             <img
-              className="profile__editImg"
-              src={require("../images/edit_img_profile.svg").default}
-              alt="lapiz de edicion de foto perfil"
+              className="profile__image"
+              id="profileImage"
+              src={userAvatar}
+              alt="Avatar del estudiante de programacion web de Practicum"
             />
-          </button>
-        </div>
+            <button
+              onClick={props.onEditAvatarClick}
+              className="profile__overlayImg"
+            >
+              <img
+                className="profile__editImg"
+                src={require("../images/edit_img_profile.svg").default}
+                alt="lapiz de edicion de foto perfil"
+              />
+            </button>
+          </div>
 
-        <div className="profile-info">
-          <h1 className="profile-info__nombre">{userName}</h1>
-          <h2 className="profile-info__about-me">{userDescription}</h2>
-          <button
-            onClick={props.onEditProfileClick}
-            className="profile-info__edit"
-          >
+          <div className="profile-info">
+            <h1 className="profile-info__nombre">{userName}</h1>
+            <h2 className="profile-info__about-me">{userDescription}</h2>
+            <button
+              onClick={props.onEditProfileClick}
+              className="profile-info__edit"
+            >
+              <img
+                src={require("../images/Edit_Button.svg").default}
+                alt="boton de editar"
+              />
+            </button>
+          </div>
+          <button onClick={props.onAddPlaceClick} className="profile__addPlace">
             <img
-              src={require("../images/Edit_Button.svg").default}
-              alt="boton de editar"
+              className="profile__add-image"
+              src={require("../images/adicion.svg").default}
+              alt="boton de agregado"
             />
           </button>
         </div>
-        <button onClick={props.onAddPlaceClick} className="profile__addPlace">
-          <img
-            className="profile__add-image"
-            src={require("../images/adicion.svg").default}
-            alt="boton de agregado"
-          />
-        </button>
-      </div>
+      </>
       <PopupWithForm
         title="Cambiar foto de perfil"
         name="imgProfile"
@@ -150,16 +156,20 @@ function Main(props) {
         />
         <span className="popup__error" id="input-url-error"></span>
       </PopupWithForm>
-      <div className="grid-container" id="grid-container">
-        {cards.map((card) => (
-          <Card
-            key={card._id}
-            card={card}
-            onDeleteClick={handleDeleteCardClick}
-            onCardClick={props.onCardClick}
-          />
-        ))}
-      </div>
+
+      <>
+        <div className="grid-container" id="grid-container">
+          {cards.map((card) => (
+            <Card
+              key={card._id}
+              card={card}
+              onDeleteClick={handleDeleteCardClick}
+              onCardClick={props.onCardClick}
+            />
+          ))}
+        </div>
+      </>
+
       <PopupWithForm
         title="¿Estás seguro?"
         formType="¿Estás seguro?"

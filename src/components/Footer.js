@@ -2,8 +2,6 @@ import React from "react";
 
 const Footer = () => {
   const year = new Date().getFullYear();
-
-  // Crear un nodo de texto con el símbolo de copyright
   const symbol = String.fromCharCode(169);
 
   return (
