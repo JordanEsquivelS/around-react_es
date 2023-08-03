@@ -9,9 +9,8 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isDeleteForm, setDeleteForm] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null); // Agregamos selectedCard
+  const [selectedCard, setSelectedCard] = useState(null);
 
-  // Controladores de eventos para abrir las ventanas emergentes
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
   };
@@ -28,12 +27,10 @@ function App() {
     setDeleteForm(true);
   };
 
-  // Nuevo controlador de eventos para establecer selectedCard
   const handleCardClick = (card) => {
     setSelectedCard(card);
   };
 
-  // Función para cerrar todas las ventanas emergentes, excluyendo selectedCard
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -54,7 +51,7 @@ function App() {
         onEditAvatarClick={handleEditAvatarClick}
         isDeleteForm={isDeleteForm}
         onDeleteForm={handleDeleteForm}
-        onClosePopups={closeAllPopups} // Pasamos el handler closeAllPopups a Main
+        onClosePopups={closeAllPopups}
         selectedCard={selectedCard}
         onCardClick={handleCardClick}
       />

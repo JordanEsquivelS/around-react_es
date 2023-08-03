@@ -11,7 +11,6 @@ function Main(props) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // Llamada a la API para obtener los datos del usuario
     api
       .getUserInfo("users/me")
       .then((userData) => {
@@ -22,7 +21,9 @@ function Main(props) {
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-    // Llamada a la API para obtener los datos de las tarjetas
+  }, []);
+
+  useEffect(() => {
     api
       .getInitialCards("cards")
       .then((cardsData) => {
@@ -33,9 +34,8 @@ function Main(props) {
       });
   }, []);
 
-  // Función para manejar el clic en el botón de eliminación de tarjeta
   const handleDeleteCardClick = () => {
-    props.onDeleteForm(); // Esto abrirá el PopupWithForm de confirmación
+    props.onDeleteForm();
   };
 
   return (
@@ -100,7 +100,7 @@ function Main(props) {
         title="Editar Perfil"
         name="editProfile"
         isOpen={props.isEditProfilePopupOpen}
-        onClose={props.onClosePopups} // Pasamos la prop onClosePopups a PopupWithForm
+        onClose={props.onClosePopups}
       >
         <input
           className="popup__input form__name"
@@ -154,15 +154,15 @@ function Main(props) {
         {cards.map((card) => (
           <Card
             key={card._id}
-            card={card} // Aquí se pasa la propiedad card al componente Card
-            onDeleteClick={handleDeleteCardClick} // Pasa la función handleDeleteCardClick a Card
-            onCardClick={props.onCardClick} // Usar la prop onCardClick de App.js
+            card={card}
+            onDeleteClick={handleDeleteCardClick}
+            onCardClick={props.onCardClick}
           />
         ))}
       </div>
       <PopupWithForm
         title="¿Estás seguro?"
-        formType="¿Estás seguro?" // Agregamos el prop formType
+        formType="¿Estás seguro?"
         name="deleteCard"
         isOpen={props.isDeleteForm}
         onClose={props.onClosePopups}
@@ -177,10 +177,7 @@ function Main(props) {
       </PopupWithForm>
 
       {props.selectedCard && (
-        <ImagePopup
-          card={props.selectedCard} // Usar la prop selectedCard de App.js
-          onClose={props.onClosePopups} // Pasamos el controlador closeAllPopups como prop onClose
-        />
+        <ImagePopup card={props.selectedCard} onClose={props.onClosePopups} />
       )}
     </main>
   );

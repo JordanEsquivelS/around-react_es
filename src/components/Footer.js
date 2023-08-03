@@ -1,7 +1,6 @@
 import React from "react";
 
 const Footer = () => {
-  // Obtener el año actual
   const year = new Date().getFullYear();
 
   // Crear un nodo de texto con el símbolo de copyright
