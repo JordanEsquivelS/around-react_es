@@ -2,7 +2,7 @@ class Api {
   constructor(options) {
     this.options = options;
     this.headers = {
-      authorization: options.token, // Utiliza el token proporcionado en las opciones
+      authorization: options.token,
       "Content-Type": "application/json",
     };
   }
