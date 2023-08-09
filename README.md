@@ -35,7 +35,7 @@ Esto iniciará el servidor de desarrollo de Webpack, lo que te permitirá ver tu
 
 Esto generará una carpeta llamada `dist` que contiene los archivos optimizados listos para desplegar en un servidor.
 
-¡Con estos pasos, deberías tener el proyecto funcionando en tu máquina local
+¡Con estos pasos, deberías tener el proyecto funcionando en tu máquina local.
 
 ## Enlaces
 
