@@ -22,8 +22,11 @@ function Main(props) {
     fetchInitialCards();
   }, []);
 
-  const handleDeleteCardClick = () => {
+  const [cardToDelete, setCardToDelete] = useState(null);
+
+  const handleDeleteCardClick = (id) => {
     props.onDeleteForm();
+    setCardToDelete(id);
   };
 
   function handleCardLike(card) {
@@ -33,6 +36,18 @@ function Main(props) {
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
     });
   }
+
+  const handleConfirmedDelete = async (event) => {
+    event.preventDefault();
+
+    try {
+      await api.deleteCard(`cards/${cardToDelete}`);
+      setCards((cards) => cards.filter((card) => card._id !== cardToDelete));
+      props.onClosePopups();
+    } catch (error) {
+      console.error("Error deleting card:", error);
+    }
+  };
 
   return (
     <main className="content">
@@ -174,6 +189,7 @@ function Main(props) {
           className="popup__button form__save"
           type="submit"
           id="btnConfirmationDelete"
+          onClick={handleConfirmedDelete}
         >
           SI
         </button>

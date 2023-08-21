@@ -9,7 +9,7 @@ function Card({ card, onDeleteClick, onCardClick, onCardLike}) {
   };
 
   const handleDeleteClick = () => {
-    onDeleteClick();
+    onDeleteClick(card._id);
   };
 
   function handleLikeClick() {

@@ -72,6 +72,18 @@ class Api {
       return this.deleteLike(`cards/likes/${cardId}`);
     }
   }
+
+  async deleteCard(endPoint) {
+    try {
+      const result = await this.fetchData(
+        `${this.options.address}/v1/${this.options.groupId}/${endPoint}`,
+        "DELETE"
+      );
+      return result;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 const api = new Api({
