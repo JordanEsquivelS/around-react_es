@@ -1,29 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
 import api from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
 function Main(props) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
+  const currentUser = useContext(CurrentUserContext);
 
   const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    async function fetchUserData() {
-      try {
-        const userData = await api.getUserInfo("users/me");
-        setUserName(userData.name);
-        setUserDescription(userData.about);
-        setUserAvatar(userData.avatar);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    }
-
-    fetchUserData();
-  }, []);
 
   useEffect(() => {
     async function fetchInitialCards() {
@@ -42,6 +26,14 @@ function Main(props) {
     props.onDeleteForm();
   };
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
   return (
     <main className="content">
       <>
@@ -50,7 +42,7 @@ function Main(props) {
             <img
               className="profile__image"
               id="profileImage"
-              src={userAvatar}
+              src={currentUser?.avatar}
               alt="Avatar del estudiante de programacion web de Practicum"
             />
             <button
@@ -66,8 +58,8 @@ function Main(props) {
           </div>
 
           <div className="profile-info">
-            <h1 className="profile-info__nombre">{userName}</h1>
-            <h2 className="profile-info__about-me">{userDescription}</h2>
+            <h1 className="profile-info__nombre">{currentUser?.name}</h1>
+            <h2 className="profile-info__about-me">{currentUser?.about}</h2>
             <button
               onClick={props.onEditProfileClick}
               className="profile-info__edit"
@@ -163,6 +155,7 @@ function Main(props) {
             <Card
               key={card._id}
               card={card}
+              onCardLike={handleCardLike}
               onDeleteClick={handleDeleteCardClick}
               onCardClick={props.onCardClick}
             />
