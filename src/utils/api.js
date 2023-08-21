@@ -49,6 +49,29 @@ class Api {
       console.log(error);
     }
   }
+  async likeCard(endPoint) {
+    const result = await this.fetchData(
+      `${this.options.address}/v1/${this.options.groupId}/${endPoint}`,
+      "PUT"
+    );
+    return result;
+  }
+
+  async deleteLike(endPoint) {
+    const result = await this.fetchData(
+      `${this.options.address}/v1/${this.options.groupId}/${endPoint}`,
+      "DELETE"
+    );
+    return result;
+  }
+
+  async changeLikeCardStatus(cardId, like) {
+    if (like) {
+      return this.likeCard(`cards/likes/${cardId}`);
+    } else {
+      return this.deleteLike(`cards/likes/${cardId}`);
+    }
+  }
 }
 
 const api = new Api({
