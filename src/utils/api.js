@@ -54,7 +54,7 @@ class Api {
       return result;
     } catch (error) {
       console.error("Error editing user info:", error);
-      throw error; // Propagar el error para manejarlo más arriba en la cadena de llamadas
+      throw error; 
     }
   }
 

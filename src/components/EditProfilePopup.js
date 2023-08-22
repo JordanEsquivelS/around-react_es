@@ -27,7 +27,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
     onUpdateUser({
       name,
-      about: description, // si has utilizado otro nombre como 'about' en lugar de 'description', usa eso.
+      about: description,
     });
   }
 
