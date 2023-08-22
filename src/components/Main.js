@@ -94,21 +94,6 @@ function Main(props) {
           </button>
         </div>
       </>
-      <PopupWithForm
-        title="Cambiar foto de perfil"
-        name="imgProfile"
-        isOpen={props.isEditAvatarPopupOpen}
-        onClose={props.onClosePopups}
-      >
-        <input
-          className="popup__input form__input"
-          type="url"
-          id="input-urlImg"
-          placeholder="Enlace a la Imagen de perfil"
-          required
-        />
-        <span className="popup__error" id="input-urlImg-error"></span>
-      </PopupWithForm>
 
       <PopupWithForm
         title="Nuevo Lugar"

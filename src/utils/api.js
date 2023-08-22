@@ -54,7 +54,7 @@ class Api {
       return result;
     } catch (error) {
       console.error("Error editing user info:", error);
-      throw error; 
+      throw error;
     }
   }
 
@@ -68,6 +68,22 @@ class Api {
       console.log(error);
     }
   }
+  async setUserPicture(profilePictureInput, endPoint) {
+    const body = { avatar: profilePictureInput };
+
+    try {
+      const result = await this.fetchData(
+        `${this.options.address}/v1/${this.options.groupId}/${endPoint}`,
+        "PATCH",
+        body
+      );
+      return result;
+    } catch (error) {
+      console.error("Error setting user picture:", error);
+      throw error;
+    }
+  }
+
   async likeCard(endPoint) {
     const result = await this.fetchData(
       `${this.options.address}/v1/${this.options.groupId}/${endPoint}`,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EditProfilePopup from "../components/EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import "../index.css";
 import Header from "./Header";
@@ -61,6 +62,23 @@ function App() {
       console.error("Error updating user:", error);
     }
   };
+
+  const handleUpdateAvatar = async (data) => {
+    try {
+      const updatedAvatar = await api.setUserPicture(
+        data.avatar,
+        "users/me/avatar"
+      );
+      setCurrentUser((prevState) => ({
+        ...prevState,
+        avatar: updatedAvatar.avatar,
+      }));
+      closeAllPopups();
+    } catch (error) {
+      console.error("Error updating avatar:", error);
+    }
+  };
+
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -77,13 +95,17 @@ function App() {
           onEditProfileClick={handleEditProfileClick}
           isAddPlacePopupOpen={isAddPlacePopupOpen}
           onAddPlaceClick={handleAddPlaceClick}
-          isEditAvatarPopupOpen={isEditAvatarPopupOpen}
           onEditAvatarClick={handleEditAvatarClick}
           isDeleteForm={isDeleteForm}
           onDeleteForm={handleDeleteForm}
           onClosePopups={closeAllPopups}
           selectedCard={selectedCard}
           onCardClick={handleCardClick}
+        />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar}
         />
 
         <EditProfilePopup
