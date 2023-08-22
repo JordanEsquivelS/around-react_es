@@ -39,6 +39,25 @@ class Api {
     }
   }
 
+  async setUserInfo(nameInput, aboutMeInput, endPoint) {
+    const body = {
+      name: nameInput,
+      about: aboutMeInput,
+    };
+
+    try {
+      const result = await this.fetchData(
+        `${this.options}/${endPoint}`,
+        "PATCH",
+        body
+      );
+      return result;
+    } catch (error) {
+      console.error("Error editing user info:", error);
+      throw error; // Propagar el error para manejarlo más arriba en la cadena de llamadas
+    }
+  }
+
   async getInitialCards(endPoint) {
     try {
       const result = await this.fetchData(
