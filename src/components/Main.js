@@ -53,33 +53,6 @@ function Main(props) {
         </div>
       </>
 
-      <PopupWithForm
-        title="Nuevo Lugar"
-        name="newPlace"
-        isOpen={props.isAddPlacePopupOpen}
-        onClose={props.onClosePopups}
-      >
-        <input
-          className="popup__input form__name"
-          type="text"
-          id="titlePlace"
-          placeholder="Titulo"
-          minLength="2"
-          maxLength="30"
-          required
-        />
-        <span className="popup__error" id="titlePlace-error"></span>
-
-        <input
-          className="popup__input form__input"
-          type="url"
-          id="input-url"
-          placeholder="Enlace a la Imagen"
-          required
-        />
-        <span className="popup__error" id="input-url-error"></span>
-      </PopupWithForm>
-
       <>
         <div className="grid-container" id="grid-container">
           {props.cards.map((card) => (

@@ -5,6 +5,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 import "../index.css";
 import Header from "./Header";
 import Main from "./Main";
+import AddPlacePopup from "./AddPlacePopup";
 import Footer from "./Footer";
 import api from "../utils/api";
 
@@ -135,7 +136,6 @@ function App() {
           onCardLike={handleCardLike}
           onDeleteClick={handleCardDelete}
           onEditProfileClick={handleEditProfileClick}
-          isAddPlacePopupOpen={isAddPlacePopupOpen}
           onAddPlaceClick={handleAddPlaceClick}
           onEditAvatarClick={handleEditAvatarClick}
           isDeleteForm={isDeleteForm}
@@ -156,6 +156,7 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
 
         <Footer />
       </div>
