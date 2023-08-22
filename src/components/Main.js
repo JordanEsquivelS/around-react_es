@@ -109,34 +109,7 @@ function Main(props) {
         />
         <span className="popup__error" id="input-urlImg-error"></span>
       </PopupWithForm>
-      <PopupWithForm
-        title="Editar Perfil"
-        name="editProfile"
-        isOpen={props.isEditProfilePopupOpen}
-        onClose={props.onClosePopups}
-      >
-        <input
-          className="popup__input form__name"
-          type="text"
-          id="name"
-          minLength="2"
-          maxLength="40"
-          placeholder="Nombre"
-          required
-        />
-        <span className="popup__error" id="name-error"></span>
 
-        <input
-          className="popup__input form__input"
-          type="text"
-          id="aboutMe"
-          minLength="2"
-          maxLength="200"
-          placeholder="Acerca de mi"
-          required
-        />
-        <span className="popup__error" id="aboutMe-error"></span>
-      </PopupWithForm>
       <PopupWithForm
         title="Nuevo Lugar"
         name="newPlace"

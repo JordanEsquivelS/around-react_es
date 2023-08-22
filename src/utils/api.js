@@ -47,7 +47,7 @@ class Api {
 
     try {
       const result = await this.fetchData(
-        `${this.options}/${endPoint}`,
+        `${this.options.address}/v1/${this.options.groupId}/${endPoint}`,
         "PATCH",
         body
       );

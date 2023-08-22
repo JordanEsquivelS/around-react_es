@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import EditProfilePopup from "../components/EditProfilePopup";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import "../index.css";
 import Header from "./Header";
@@ -47,6 +48,19 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleUpdateUser = async (data) => {
+    try {
+      const updatedUser = await api.setUserInfo(
+        data.name,
+        data.about,
+        "users/me"
+      );
+      setCurrentUser(updatedUser);
+      closeAllPopups();
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
@@ -60,7 +74,6 @@ function App() {
       <div className="page">
         <Header />
         <Main
-          isEditProfilePopupOpen={isEditProfilePopupOpen}
           onEditProfileClick={handleEditProfileClick}
           isAddPlacePopupOpen={isAddPlacePopupOpen}
           onAddPlaceClick={handleAddPlaceClick}
@@ -71,6 +84,12 @@ function App() {
           onClosePopups={closeAllPopups}
           selectedCard={selectedCard}
           onCardClick={handleCardClick}
+        />
+
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser}
         />
 
         <Footer />
