@@ -32,6 +32,46 @@ function App() {
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
   };
+  const [cards, setCards] = useState([]);
+  const [cardToDelete, setCardToDelete] = useState(null);
+
+  useEffect(() => {
+    async function fetchInitialCards() {
+      try {
+        const cardsData = await api.getInitialCards("cards");
+        setCards(cardsData);
+      } catch (error) {
+        console.error("Error fetching cards data:", error);
+      }
+    }
+
+    fetchInitialCards();
+  }, []);
+
+  const handleCardDelete = (id) => {
+    handleDeleteForm();
+    setCardToDelete(id);
+  };
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
+  const handleConfirmedDelete = async (event) => {
+    event.preventDefault();
+
+    try {
+      await api.deleteCard(`cards/${cardToDelete}`);
+      setCards((cards) => cards.filter((card) => card._id !== cardToDelete));
+      closeAllPopups();
+    } catch (error) {
+      console.error("Error deleting card:", error);
+    }
+  };
 
   const handleAddPlaceClick = () => {
     setIsAddPlacePopupOpen(true);
@@ -92,6 +132,9 @@ function App() {
       <div className="page">
         <Header />
         <Main
+          cards={cards}
+          onCardLike={handleCardLike}
+          onDeleteClick={handleCardDelete}
           onEditProfileClick={handleEditProfileClick}
           isAddPlacePopupOpen={isAddPlacePopupOpen}
           onAddPlaceClick={handleAddPlaceClick}
@@ -101,6 +144,7 @@ function App() {
           onClosePopups={closeAllPopups}
           selectedCard={selectedCard}
           onCardClick={handleCardClick}
+          handleConfirmedDelete={handleConfirmedDelete}
         />
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}

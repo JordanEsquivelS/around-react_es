@@ -1,53 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import PopupWithForm from "./PopupWithForm";
-import api from "../utils/api";
 import Card from "./Card";
 import ImagePopup from "./ImagePopup";
+
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);
-
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    async function fetchInitialCards() {
-      try {
-        const cardsData = await api.getInitialCards("cards");
-        setCards(cardsData);
-      } catch (error) {
-        console.error("Error fetching cards data:", error);
-      }
-    }
-
-    fetchInitialCards();
-  }, []);
-
-  const [cardToDelete, setCardToDelete] = useState(null);
-
-  const handleDeleteCardClick = (id) => {
-    props.onDeleteForm();
-    setCardToDelete(id);
-  };
-
-  function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
-  }
-
-  const handleCardDelete = async (event) => {
-    event.preventDefault();
-
-    try {
-      await api.deleteCard(`cards/${cardToDelete}`);
-      setCards((cards) => cards.filter((card) => card._id !== cardToDelete));
-      props.onClosePopups();
-    } catch (error) {
-      console.error("Error deleting card:", error);
-    }
-  };
 
   return (
     <main className="content">
@@ -124,12 +82,12 @@ function Main(props) {
 
       <>
         <div className="grid-container" id="grid-container">
-          {cards.map((card) => (
+          {props.cards.map((card) => (
             <Card
               key={card._id}
               card={card}
-              onCardLike={handleCardLike}
-              onDeleteClick={handleDeleteCardClick}
+              onCardLike={props.onCardLike}
+              onDeleteClick={props.onDeleteClick}
               onCardClick={props.onCardClick}
             />
           ))}
@@ -147,7 +105,7 @@ function Main(props) {
           className="popup__button form__save"
           type="submit"
           id="btnConfirmationDelete"
-          onClick={handleCardDelete}
+          onClick={props.handleConfirmedDelete}
         >
           SI
         </button>
