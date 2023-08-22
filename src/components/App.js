@@ -110,7 +110,19 @@ function App() {
       console.error("Error deleting card:", error);
     }
   };
-
+  const handleAddPlaceSubmit = async (newCardData) => {
+    try {
+      const newCard = await api.setCard(
+        newCardData.name,
+        newCardData.link,
+        "cards"
+      );
+      setCards([newCard, ...cards]);
+      closeAllPopups();
+    } catch (error) {
+      console.error("Error adding new card:", error);
+    }
+  };
   const handleDeleteForm = () => {
     setDeleteForm(true);
   };
@@ -156,7 +168,11 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <AddPlacePopup
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlaceSubmit={handleAddPlaceSubmit}
+        />
 
         <Footer />
       </div>

@@ -108,6 +108,25 @@ class Api {
     }
   }
 
+  async setCard(newCardNameInput, newCardLinkInput, endPoint) {
+    const body = {
+      name: newCardNameInput,
+      link: newCardLinkInput,
+    };
+
+    try {
+      const result = await this.fetchData(
+        `${this.options.address}/v1/${this.options.groupId}/${endPoint}`,
+        "POST",
+        body
+      );
+      return result;
+    } catch (error) {
+      console.error("Error setting card:", error);
+      throw error;
+    }
+  }
+
   async deleteCard(endPoint) {
     try {
       const result = await this.fetchData(
