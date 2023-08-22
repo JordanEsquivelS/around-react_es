@@ -37,7 +37,7 @@ function Main(props) {
     });
   }
 
-  const handleConfirmedDelete = async (event) => {
+  const handleCardDelete = async (event) => {
     event.preventDefault();
 
     try {
@@ -147,7 +147,7 @@ function Main(props) {
           className="popup__button form__save"
           type="submit"
           id="btnConfirmationDelete"
-          onClick={handleConfirmedDelete}
+          onClick={handleCardDelete}
         >
           SI
         </button>
