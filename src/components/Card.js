@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 
-function Card({ card, onDeleteClick, onCardClick, onCardLike}) {
+function Card({ card, onDeleteClick, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
 
   const handleClick = () => {
@@ -16,7 +16,12 @@ function Card({ card, onDeleteClick, onCardClick, onCardLike}) {
     onCardLike(card);
   }
 
-  const isLiked = card.likes.some((i) => i._id === currentUser._id);
+  const isLiked =
+    card &&
+    card.likes &&
+    currentUser &&
+    card.likes.some((i) => i && i._id === currentUser._id);
+
   const cardLikeButtonClassName = `photo-grid__like ${
     isLiked ? "photo-grid__like_active" : ""
   }`;
@@ -29,7 +34,7 @@ function Card({ card, onDeleteClick, onCardClick, onCardLike}) {
         alt={card.name}
         onClick={handleClick}
       />
-      {card.owner._id === currentUser._id && (
+      {card.owner && currentUser && card.owner._id === currentUser._id && (
         <img
           alt="imagen de tacho de basura blanco"
           className="photo-grid__delete"
