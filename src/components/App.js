@@ -9,12 +9,15 @@ import Footer from "./Footer";
 import api from "../utils/api";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
-  const [isDeleteForm, setDeleteForm] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+
+  const [cards, setCards] = useState([]);
+  const [cardToDelete, setCardToDelete] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isDeleteForm, setDeleteForm] = useState(false);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
@@ -32,8 +35,42 @@ function App() {
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true);
   };
-  const [cards, setCards] = useState([]);
-  const [cardToDelete, setCardToDelete] = useState(null);
+  const handleEditAvatarClick = () => {
+    setIsEditAvatarPopupOpen(true);
+  };
+  const handleAddPlaceClick = () => {
+    setIsAddPlacePopupOpen(true);
+  };
+
+  const handleUpdateUser = async (data) => {
+    try {
+      const updatedUser = await api.setUserInfo(
+        data.name,
+        data.about,
+        "users/me"
+      );
+      setCurrentUser(updatedUser);
+      closeAllPopups();
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
+  };
+
+  const handleUpdateAvatar = async (data) => {
+    try {
+      const updatedAvatar = await api.setUserPicture(
+        data.avatar,
+        "users/me/avatar"
+      );
+      setCurrentUser((prevState) => ({
+        ...prevState,
+        avatar: updatedAvatar.avatar,
+      }));
+      closeAllPopups();
+    } catch (error) {
+      console.error("Error updating avatar:", error);
+    }
+  };
 
   useEffect(() => {
     async function fetchInitialCards() {
@@ -73,50 +110,12 @@ function App() {
     }
   };
 
-  const handleAddPlaceClick = () => {
-    setIsAddPlacePopupOpen(true);
-  };
-
-  const handleEditAvatarClick = () => {
-    setIsEditAvatarPopupOpen(true);
-  };
-
   const handleDeleteForm = () => {
     setDeleteForm(true);
   };
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
-  };
-
-  const handleUpdateUser = async (data) => {
-    try {
-      const updatedUser = await api.setUserInfo(
-        data.name,
-        data.about,
-        "users/me"
-      );
-      setCurrentUser(updatedUser);
-      closeAllPopups();
-    } catch (error) {
-      console.error("Error updating user:", error);
-    }
-  };
-
-  const handleUpdateAvatar = async (data) => {
-    try {
-      const updatedAvatar = await api.setUserPicture(
-        data.avatar,
-        "users/me/avatar"
-      );
-      setCurrentUser((prevState) => ({
-        ...prevState,
-        avatar: updatedAvatar.avatar,
-      }));
-      closeAllPopups();
-    } catch (error) {
-      console.error("Error updating avatar:", error);
-    }
   };
 
   const closeAllPopups = () => {
