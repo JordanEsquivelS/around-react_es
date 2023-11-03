@@ -1,4 +1,4 @@
-# Proyecto 11 - React: Alrededor de los Estados Unidos
+# Proyecto 11 - React: Front End Social Media
 
 Este proyecto React presenta una colección de imágenes interesantes como paisajes, animales, comida y más. Los usuarios pueden explorar esta galería de imágenes y dar "Me gusta" a sus favoritas. Además, pueden ver detalles de las imágenes en un popup interactivo.
 
@@ -6,9 +6,9 @@ Este proyecto React presenta una colección de imágenes interesantes como paisa
 
 - Utiliza React para crear una experiencia de usuario interactiva y fluida.
 - Muestra imágenes almacenadas en el servidor de manera dinámica mediante el uso de componentes React como Card y ImagePopup.
-- Permite a los usuarios dar "Me gusta" a sus imágenes favoritas. Aunque la funcionalidad de conteo de likes está presente, aún no se encuentra completamente implementada.
+- Permite a los usuarios dar "Me gusta" a sus imágenes favoritas.
 - Permite a los usuarios ver detalles de las imágenes en un popup interactivo. Al hacer clic en una imagen, se muestra un popup con información adicional.
-- Utiliza formularios emergentes (PopupWithForm) para permitir a los usuarios editar sus perfiles y agregar nuevos lugares. Aunque estas funcionalidades están presentes, aún no están completamente implementadas.
+- Utiliza formularios emergentes (PopupWithForm) para permitir a los usuarios editar sus perfiles y agregar nuevos lugares.
 - Utiliza Webpack para empaquetar y optimizar los archivos del proyecto, incluyendo la transpilación del código JavaScript y la carga de recursos adicionales.
 
 ## Pasos de instalación
