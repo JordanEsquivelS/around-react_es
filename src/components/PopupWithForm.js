@@ -8,15 +8,24 @@ function PopupWithForm({
   onClose,
   name,
   onSubmit,
+  isFormValid,
+  onPopupClose,
 }) {
+  const buttonClass = isFormValid
+    ? "popup__button form__save"
+    : "popup__button form__save popup__button_disabled";
+
   return (
     <div className={`popup ${isOpen ? "popup_is-opened" : ""}`}>
       <div className="popup__container">
         <img
           className="popup__container-image"
           src={require("../images/CloseIcon_blanco.svg").default}
-          alt="boton de cerrar"
-          onClick={onClose}
+          alt="botón de cerrar"
+          onClick={() => {
+            onPopupClose();
+            onClose();
+          }}
         />
         <form className="popup__form form" onSubmit={onSubmit} noValidate>
           <h2 className="form__title">{title}</h2>
@@ -25,9 +34,10 @@ function PopupWithForm({
 
           {formType !== "¿Estás seguro?" && (
             <button
-              className="popup__button form__save"
+              className={buttonClass}
               type="submit"
               id={`submit_${name}`}
+              disabled={!isFormValid}
             >
               GUARDAR
             </button>

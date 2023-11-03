@@ -1,9 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
   const titleRef = useRef();
   const imageUrlRef = useRef();
+
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const checkFormValidity = () => {
+    const title = titleRef.current.value;
+    const imageUrl = imageUrlRef.current.value;
+    setIsFormValid(title.length > 2 && imageUrl.length > 10);
+  };
+
   return (
     <PopupWithForm
       title="Nuevo Lugar"
@@ -17,6 +26,8 @@ function AddPlacePopup(props) {
           link: imageUrlRef.current.value,
         });
       }}
+      isFormValid={isFormValid}
+      onPopupClose={() => setIsFormValid(false)}
     >
       <input
         ref={titleRef}
@@ -27,6 +38,7 @@ function AddPlacePopup(props) {
         minLength="2"
         maxLength="30"
         required
+        onChange={checkFormValidity}
       />
       <span className="popup__error" id="titlePlace-error"></span>
 
@@ -37,6 +49,7 @@ function AddPlacePopup(props) {
         id="input-url"
         placeholder="Enlace a la Imagen"
         required
+        onChange={checkFormValidity}
       />
       <span className="popup__error" id="input-url-error"></span>
     </PopupWithForm>
