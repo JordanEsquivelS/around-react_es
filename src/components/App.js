@@ -59,6 +59,7 @@ function App() {
 
   const handleUpdateAvatar = async (data) => {
     try {
+      closeAllPopups();
       const updatedAvatar = await api.setUserPicture(
         data.avatar,
         "users/me/avatar"
@@ -67,7 +68,6 @@ function App() {
         ...prevState,
         avatar: updatedAvatar.avatar,
       }));
-      closeAllPopups();
     } catch (error) {
       console.error("Error updating avatar:", error);
     }

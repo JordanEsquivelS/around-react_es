@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
@@ -12,6 +12,11 @@ function AddPlacePopup(props) {
     const imageUrl = imageUrlRef.current.value;
     setIsFormValid(title.length > 1 && imageUrl.length > 10);
   };
+  useEffect(() => {
+    if (props.isOpen) {
+      setIsFormValid(false);
+    }
+  }, [props.isOpen]);
 
   return (
     <PopupWithForm

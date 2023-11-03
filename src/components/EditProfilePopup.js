@@ -6,6 +6,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     if (currentUser) {
@@ -13,6 +14,20 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       setDescription(currentUser.about);
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    const checkFormValidity = () => {
+      setIsFormValid(name.length >= 2 && description.length >= 2);
+    };
+
+    checkFormValidity();
+  }, [name, description]);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsFormValid(false);
+    }
+  }, [isOpen]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -38,6 +53,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       title="Edit profile"
       name="edit"
       onSubmit={handleSubmit}
+      isFormValid={isFormValid}
     >
       <input
         className="popup__input form__name"
