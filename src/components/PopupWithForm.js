@@ -15,6 +15,12 @@ function PopupWithForm({
     ? "popup__button form__save"
     : "popup__button form__save popup__button_disabled";
 
+  const handleClose = () => {
+    if (onPopupClose) {
+      onPopupClose();
+    }
+    onClose();
+  };
   return (
     <div className={`popup ${isOpen ? "popup_is-opened" : ""}`}>
       <div className="popup__container">
@@ -22,12 +28,9 @@ function PopupWithForm({
           className="popup__container-image"
           src={require("../images/CloseIcon_blanco.svg").default}
           alt="botón de cerrar"
-          onClick={() => {
-            onPopupClose();
-            onClose();
-          }}
+          onClick={handleClose}
         />
-        <form className="popup__form form" onSubmit={onSubmit} noValidate>
+        <form className="popup__form form" onSubmit={onSubmit}>
           <h2 className="form__title">{title}</h2>
 
           {isOpen && children}

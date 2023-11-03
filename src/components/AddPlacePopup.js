@@ -10,7 +10,7 @@ function AddPlacePopup(props) {
   const checkFormValidity = () => {
     const title = titleRef.current.value;
     const imageUrl = imageUrlRef.current.value;
-    setIsFormValid(title.length > 2 && imageUrl.length > 10);
+    setIsFormValid(title.length > 1 && imageUrl.length > 10);
   };
 
   return (
